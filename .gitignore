@@ -26,3 +26,7 @@ out/
 *.rar
 hs_err_pid*
 replay_pid*
+
+# OS-specific
+.DS_Store
+Thumbs.db
