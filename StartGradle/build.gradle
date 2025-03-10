@@ -23,6 +23,7 @@ application {
     mainClass = 'ComputerShopMain'
 }
 jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest{
         attributes('Main-Class': 'ComputerShopMain')
     }

@@ -8,6 +8,7 @@ public class User
 
     public User(int id, String password, Role role)
     {
+
         this.id = id;
         this.password = password;
         this.role = role;
