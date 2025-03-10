@@ -9,5 +9,4 @@ public interface Repository<T, Tid> {
     T findById(Tid id);
     Iterable<T> findAll();
     Collection<T> getAll();
-
 }
