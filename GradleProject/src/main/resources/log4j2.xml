@@ -7,13 +7,13 @@
                  Below pattern outputs class, line number and method name. -->
             <PatternLayout pattern="%d{DATE} %-5level %class{36} %L %M - %msg%n"/>
         </Console>
-        <File name="log" fileName="target/testMPP.log" append="true">
+        <File name="LogFile" fileName="logs/application.log" append="true">
             <PatternLayout pattern="%d{DATE} %-5level %class{36} %L %M - %msg%n"/>
-        </File>c
+        </File>
     </Appenders>
     <Loggers>
         <Root level="trace">
-            <AppenderRef ref="log"/>
+            <AppenderRef ref="LogFile"/>
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

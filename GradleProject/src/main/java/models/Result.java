@@ -1,11 +1,11 @@
-package com.triathlon.model;
+package models;
 
-public class Result {
+public class Result extends Identifiable<Integer> {
     private Participant participant;
-    private String event;
+    private Event event;
     private int points;
 
-    public Result(Participant participant, String event, int points) {
+    public Result(Participant participant, Event event, int points) {
         this.participant = participant;
         this.event = event;
         this.points = points;
@@ -15,7 +15,7 @@ public class Result {
         return participant;
     }
 
-    public String getEvent() {
+    public Event getEvent() {
         return event;
     }
 
