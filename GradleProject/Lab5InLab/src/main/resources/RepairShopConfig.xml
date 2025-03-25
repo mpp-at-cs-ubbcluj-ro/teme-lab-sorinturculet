@@ -14,7 +14,7 @@
     </bean>
 
     <bean id="requestRepoJdbc" class="repository.jdbc.ComputerRepairRequestJdbcRepository">
-        <constructor-arg value="ComputerRequests.txt"/>
+        <constructor-arg ref="jdbcProps"/>
     </bean>
 
     <bean id="formsRepoFile" class="repository.file.ComputerRepairedFormFileRepository">
@@ -27,8 +27,8 @@
     </bean>
 
     <bean id="shopService" class="services.ComputerRepairServices">
-         <constructor-arg ref="requestRepoFile"/>
-        <constructor-arg ref="formsRepoFile"/>
+         <constructor-arg ref="requestRepoJdbc"/>
+        <constructor-arg ref="formsRepoJdbc"/>
     </bean>
 
 </beans>
