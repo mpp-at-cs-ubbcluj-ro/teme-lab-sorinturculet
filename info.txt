@@ -12,4 +12,3 @@ participanților și numărul total de puncte obținute se actualizează automat
 asociata lui,  în ordine descrescătoare după numărul de puncte obținut.
 4. Logout.
 
-Home assignment 1: Diagrama UML de clase(pt domeniu/models) cu atribute si relatii.

@@ -1,5 +1,6 @@
 package repository;
 
+import models.Event;
 import models.User;
 import models.Role;
 import org.apache.logging.log4j.LogManager;
@@ -10,7 +11,7 @@ import java.util.Optional;
 import java.util.List;
 import java.util.Properties;
 
-public class UsersDBRepository implements ICrudRepository<User, Integer> {
+public class UsersDBRepository implements IUserRepository {
     private JdbcUtils dbUtils;
     private static final Logger logger = LogManager.getLogger();
 
@@ -23,11 +24,12 @@ public class UsersDBRepository implements ICrudRepository<User, Integer> {
     public User create(User entity) {
         logger.traceEntry("Creating user: {}", entity);
         Connection con = dbUtils.getConnection();
-        String sql = "INSERT INTO users(name, password, role) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO users(name, password, role, event) VALUES(?, ?, ?, ?)";
         try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getPassword());
             ps.setString(3, entity.getRole().name());
+            ps.setString(4, entity.getEvent().name());
             ps.executeUpdate();
             
             // Get the auto-generated ID
@@ -59,7 +61,9 @@ public class UsersDBRepository implements ICrudRepository<User, Integer> {
                     String password = rs.getString("password");
                     String roleStr = rs.getString("role");
                     Role role = Role.valueOf(roleStr);
-                    User user = new User(name, password, role);
+                    String eventStr = rs.getString("event");
+                    Event event = Event.valueOf(eventStr);
+                    User user = new User(name, password, role, event);
                     user.setId(id);
                     return logger.traceExit(Optional.of(user));
                 }
@@ -74,12 +78,13 @@ public class UsersDBRepository implements ICrudRepository<User, Integer> {
     public User update(User entity) {
         logger.traceEntry("Updating user: {}", entity);
         Connection con = dbUtils.getConnection();
-        String sql = "UPDATE users SET name = ?, password = ?, role = ? WHERE id = ?";
+        String sql = "UPDATE users SET name = ?, password = ?, role = ?, event = ? WHERE id = ?";
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getPassword());
             ps.setString(3, entity.getRole().name());
-            ps.setInt(4, entity.getId());
+            ps.setString(4, entity.getEvent().name());
+            ps.setInt(5, entity.getId());
             ps.executeUpdate();
         } catch (SQLException ex) {
             logger.error("Error updating user", ex);
@@ -101,7 +106,9 @@ public class UsersDBRepository implements ICrudRepository<User, Integer> {
                 String password = rs.getString("password");
                 String roleStr = rs.getString("role");
                 Role role = Role.valueOf(roleStr);
-                User user = new User(name, password, role);
+                String eventStr = rs.getString("event");
+                Event event = Event.valueOf(eventStr);
+                User user = new User(name, password, role, event);
                 user.setId(id);
                 users.add(user);
             }
@@ -110,4 +117,34 @@ public class UsersDBRepository implements ICrudRepository<User, Integer> {
         }
         return logger.traceExit(users);
     }
+
+    @Override
+    public Optional<User> authenticate(String username, String password) {
+        logger.traceEntry("Authenticating user: {}", username);
+        Connection con = dbUtils.getConnection();
+        String sql = "SELECT * FROM users WHERE name = ? AND password = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, username);
+            ps.setString(2, password);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int id = rs.getInt("id");
+                    String name = rs.getString("name");
+                    String pwd = rs.getString("password");
+                    String roleStr = rs.getString("role");
+                    Role role = Role.valueOf(roleStr);
+                    String eventStr = rs.getString("event");
+                    Event event = Event.valueOf(eventStr);
+                    
+                    User user = new User(name, pwd, role, event);
+                    user.setId(id);
+                    return logger.traceExit(Optional.of(user));
+                }
+            }
+        } catch (SQLException ex) {
+            logger.error("Error authenticating user", ex);
+        }
+        return logger.traceExit(Optional.empty());
+    }
+
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="triathlon.MainViewController" prefWidth="400" prefHeight="200">
+    <children>
+        <Label layoutX="30" layoutY="30" text="Username:"/>
+        <TextField fx:id="usernameField" layoutX="100" layoutY="26"/>
+
+        <Label layoutX="30" layoutY="70" text="Password:"/>
+        <PasswordField fx:id="passwordField" layoutX="100" layoutY="66"/>
+
+        <Button text="Login" layoutX="150" layoutY="120" onAction="#handleLogin"/>
+    </children>
+</AnchorPane>

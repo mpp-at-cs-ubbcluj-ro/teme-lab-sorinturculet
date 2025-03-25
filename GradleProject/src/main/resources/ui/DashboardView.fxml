@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="triathlon.DashboardViewController" prefWidth="800" prefHeight="600">
+    <top>
+        <VBox spacing="5" style="-fx-padding: 10px; -fx-background-color: #e0f7fa;">
+            <HBox spacing="10">
+                <Label fx:id="arbiterNameLabel" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="logoutButton" text="Logout" onAction="#handleLogout" style="-fx-background-color: #0288d1; -fx-text-fill: white;"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Managing Event:" style="-fx-font-weight: bold;"/>
+                <Label fx:id="eventLabel" style="-fx-font-size: 14px; -fx-text-fill: #01579b;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane>
+            <tabs>
+                <!-- Participants Tab -->
+                <Tab text="Participants" closable="false">
+                    <VBox spacing="10" style="-fx-padding: 10px;">
+                        <Label text="Participants List (Alphabetical)" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                        <TableView fx:id="participantTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="nameColumn" text="Participant Name" prefWidth="200"/>
+                                <TableColumn fx:id="pointsColumn" text="Total Points" prefWidth="100"/>
+                            </columns>
+                        </TableView>
+
+                        <HBox spacing="10" style="-fx-padding: 10px; -fx-background-color: #b3e5fc; -fx-border-color: #0288d1; -fx-border-radius: 5;">
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Add Result for Selected Participant:" style="-fx-font-weight: bold;"/>
+                                <Label fx:id="selectedParticipantLabel" style="-fx-font-style: italic;"/>
+                            </VBox>
+                            <TextField fx:id="pointsInputField" promptText="Enter points" prefWidth="100"/>
+                            <Button fx:id="addPointsButton" text="Add Points" onAction="#handleAddPoints"
+                                    style="-fx-background-color: #0288d1; -fx-text-fill: white;"/>
+                        </HBox>
+                    </VBox>
+                </Tab>
+
+                <!-- Event Results Report Tab -->
+                <Tab text="Event Report" closable="false">
+                    <VBox spacing="10" style="-fx-padding: 10px;">
+                        <Label text="Results for Event (Sorted by Points)" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                        <HBox spacing="5" alignment="CENTER_LEFT">
+                            <Label text="Showing results for:"/>
+                            <Label fx:id="reportEventLabel" style="-fx-font-weight: bold;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button text="Refresh Report" onAction="#handleRefreshReport"
+                                    style="-fx-background-color: #0288d1; -fx-text-fill: white;"/>
+                        </HBox>
+                        <TableView fx:id="reportTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="reportNameColumn" text="Participant Name" prefWidth="200"/>
+                                <TableColumn fx:id="reportPointsColumn" text="Points" prefWidth="100"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 group = 'ro.mpp2024'
@@ -19,6 +20,9 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation 'org.openjfx:javafx-controls:21'
+    implementation 'org.openjfx:javafx-fxml:21'
 }
 jar{
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -29,6 +33,10 @@ jar{
     }from{
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+}
+javafx {
+    version = "21"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 test {
     useJUnitPlatform()

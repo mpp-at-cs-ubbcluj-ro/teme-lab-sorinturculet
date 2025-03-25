@@ -2,5 +2,9 @@ package repository;
 
 import models.User;
 
-public interface IUserRepository extends ICrudRepository<User, String>{
+import java.util.List;
+import java.util.Optional;
+
+public interface IUserRepository extends ICrudRepository<User, Integer> {
+    Optional<User> authenticate(String username, String password);
 }
