@@ -32,6 +32,8 @@ public class DashboardViewController implements TriathlonService.DataChangeListe
     @FXML private Button reportButton;
     @FXML private Button logoutButton;
 
+    @FXML private TextField newParticipantNameField;
+
     private TriathlonService service;
     private User loggedInUser;
     private ObservableList<Participant> participantsModel = FXCollections.observableArrayList();
@@ -177,6 +179,23 @@ public class DashboardViewController implements TriathlonService.DataChangeListe
             service.removeDataChangeListener(this);
         }
         participantTable.getScene().getWindow().hide();
+    }
+    @FXML
+    private void handleAddParticipant() {
+        String name = newParticipantNameField.getText().trim();
+        if (name.isEmpty()) {
+            showError("Participant name cannot be empty.");
+            return;
+        }
+
+        try {
+            service.addParticipant(name);
+            newParticipantNameField.clear();
+            showInformation("Participant '" + name + "' was successfully added.");
+        } catch (Exception e) {
+            showError("Error adding participant: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void showError(String msg) {

@@ -32,6 +32,10 @@
                                 <TableColumn fx:id="pointsColumn" text="Total Points" prefWidth="100"/>
                             </columns>
                         </TableView>
+                        <HBox spacing="10">
+                            <TextField fx:id="newParticipantNameField" promptText="Enter participant name"/>
+                            <Button text="Add Participant" onAction="#handleAddParticipant"/>
+                        </HBox>
 
                         <HBox spacing="10" style="-fx-padding: 10px; -fx-background-color: #b3e5fc; -fx-border-color: #0288d1; -fx-border-radius: 5;">
                             <VBox spacing="5" HBox.hgrow="ALWAYS">

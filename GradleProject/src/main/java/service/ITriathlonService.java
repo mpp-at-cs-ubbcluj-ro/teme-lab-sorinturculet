@@ -18,6 +18,10 @@ public interface ITriathlonService {
     // Add result
     void addResult(Result result);
 
+
+    Participant addParticipant(String name);
+
+
     // Report: results by event (for that arbiter)
     List<Result> getResultsByEvent(String event);
 }

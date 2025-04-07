@@ -17,14 +17,14 @@ public class TriathlonService implements ITriathlonService {
 
     private final IUserRepository userRepo;
     private final IParticipantRepository participantRepo;
-    private final ResultsDBRepository resultRepo;
+    private final IResultRepository resultRepo;
     
     // Observer pattern for real-time updates
     private final List<DataChangeListener> listeners = new CopyOnWriteArrayList<>();
 
     public TriathlonService(IUserRepository userRepo,
                             IParticipantRepository participantRepo,
-                            ResultsDBRepository resultRepo) {
+                            IResultRepository resultRepo) {
         this.userRepo = userRepo;
         this.participantRepo = participantRepo;
         this.resultRepo = resultRepo;
@@ -71,6 +71,13 @@ public class TriathlonService implements ITriathlonService {
         Result createdResult = resultRepo.create(result);
 
         notifyDataChanged();
+    }
+    @Override
+    public Participant addParticipant(String name) {
+        Participant newParticipant = new Participant(name);
+        Participant created = participantRepo.create(newParticipant);
+        notifyDataChanged();
+        return created;
     }
 
     @Override

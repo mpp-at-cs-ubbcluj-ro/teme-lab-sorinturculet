@@ -6,9 +6,7 @@ import javafx.stage.Stage;
 import models.Event;
 import models.Participant;
 import models.Result;
-import repository.ParticipantsDBRepository;
-import repository.ResultsDBRepository;
-import repository.UsersDBRepository;
+import repository.*;
 import service.TriathlonService;
 
 import java.io.FileReader;
@@ -37,9 +35,9 @@ public class TriathlonMain extends Application {
         }
 
         // Initialize repositories and service
-        UsersDBRepository userRepo = new UsersDBRepository(props);
-        ParticipantsDBRepository participantRepo = new ParticipantsDBRepository(props);
-        ResultsDBRepository resultRepo = new ResultsDBRepository(props);
+        IUserRepository userRepo = new UsersDBRepository(props);
+        IParticipantRepository participantRepo = new ParticipantsDBRepository(props);
+        IResultRepository resultRepo = new ResultsDBRepository(props);
 
         // Create service with repositories - save to static field
         service = new TriathlonService(userRepo, participantRepo, resultRepo);
