@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 group = 'ro.mpp2024'
@@ -11,13 +10,10 @@ repositories {
 }
 
 dependencies {
+    implementation project(':domain')
+    implementation project(':repository')
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-}
-
-javafx {
-    version = "21"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 test {

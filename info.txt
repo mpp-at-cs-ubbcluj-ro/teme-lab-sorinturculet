@@ -10,5 +10,6 @@ participant numărul de puncte obținut (dacă este cazul). După adăugarea unu
 participanților și numărul total de puncte obținute se actualizează automat pentru toți arbitrii.
 3. Raport. Un arbitru poate vizualiza în altă listă/alt tabel toți participanții care au obținut puncte la proba
 asociata lui,  în ordine descrescătoare după numărul de puncte obținut.
-4. Logout.
+4. Adaugare participant. Un arbitru poate adauga un nou participant in sistem.
+5. Logout.
 

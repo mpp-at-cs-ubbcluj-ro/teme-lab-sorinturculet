@@ -2,7 +2,27 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/teme-lab-sorinturculet.iml" filepath="$PROJECT_DIR$/.idea/teme-lab-sorinturculet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GradleProject.iml" filepath="$PROJECT_DIR$/.idea/modules/GradleProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/client/GradleProject.client.iml" filepath="$PROJECT_DIR$/.idea/modules/client/GradleProject.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/client/GradleProject.client.main.iml" filepath="$PROJECT_DIR$/.idea/modules/client/GradleProject.client.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/client/GradleProject.client.test.iml" filepath="$PROJECT_DIR$/.idea/modules/client/GradleProject.client.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/GradleProject.domain.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/GradleProject.domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/GradleProject.domain.main.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/GradleProject.domain.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/GradleProject.domain.test.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/GradleProject.domain.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GradleProject.main.iml" filepath="$PROJECT_DIR$/.idea/modules/GradleProject.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/networking/GradleProject.networking.iml" filepath="$PROJECT_DIR$/.idea/modules/networking/GradleProject.networking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/networking/GradleProject.networking.main.iml" filepath="$PROJECT_DIR$/.idea/modules/networking/GradleProject.networking.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/networking/GradleProject.networking.test.iml" filepath="$PROJECT_DIR$/.idea/modules/networking/GradleProject.networking.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/repository/GradleProject.repository.iml" filepath="$PROJECT_DIR$/.idea/modules/repository/GradleProject.repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/repository/GradleProject.repository.main.iml" filepath="$PROJECT_DIR$/.idea/modules/repository/GradleProject.repository.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/repository/GradleProject.repository.test.iml" filepath="$PROJECT_DIR$/.idea/modules/repository/GradleProject.repository.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/GradleProject.server.iml" filepath="$PROJECT_DIR$/.idea/modules/server/GradleProject.server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/GradleProject.server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/server/GradleProject.server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/GradleProject.server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/server/GradleProject.server.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/services/GradleProject.services.iml" filepath="$PROJECT_DIR$/.idea/modules/services/GradleProject.services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/services/GradleProject.services.main.iml" filepath="$PROJECT_DIR$/.idea/modules/services/GradleProject.services.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/services/GradleProject.services.test.iml" filepath="$PROJECT_DIR$/.idea/modules/services/GradleProject.services.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GradleProject.test.iml" filepath="$PROJECT_DIR$/.idea/modules/GradleProject.test.iml" />
     </modules>
   </component>
 </project>
