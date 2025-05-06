@@ -6,6 +6,10 @@ public class User extends Identifiable<Integer> {
     private Role role;
     private Event event;
 
+    // Add no-arg constructor for Gson
+    public User() {
+    }
+
     public User(String name, String password, Role role,Event event) {
         this.name = name;
         this.password = password;

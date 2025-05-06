@@ -22,7 +22,15 @@ public abstract class AbstractJsonProxy extends AbstractProxy {
     @Override
     protected Response readResponse() throws Exception {
         String responseLine = input.readLine();
-        System.out.println("Response received: " + responseLine);
-        return gsonFormatter.fromJson(responseLine, Response.class);
+        System.out.println("[Proxy] Raw response received: " + responseLine);
+        Response response = gsonFormatter.fromJson(responseLine, Response.class);
+        System.out.println("[Proxy] Deserialized response object: " + response);
+        if (response != null) {
+            System.out.println("[Proxy] Deserialized user in response: " + response.getUser());
+            if (response.getUser() != null) {
+                System.out.println("[Proxy] Deserialized user name: " + response.getUser().getName());
+            }
+        }
+        return response;
     }
 }

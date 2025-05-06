@@ -42,13 +42,17 @@ public class MainViewController {
 
         try {
             Optional<User> loggedInUser = service.authenticate(username, password);
+            System.out.println("[Controller] Authentication result: " + loggedInUser);
 
             if (loggedInUser.isPresent()) {
+                System.out.println("[Controller] Login successful, opening dashboard for user: " + loggedInUser.get().getName());
                 openMainApplication(loggedInUser.get());
             } else {
+                System.out.println("[Controller] Login failed (user not present in Optional). Showing error message.");
                 showErrorMessage("Invalid username or password");
             }
         } catch (Exception e) {
+            System.out.println("[Controller] Login failed due to exception: " + e.getMessage());
             showErrorMessage("An error occurred: " + e.getMessage());
             e.printStackTrace();
         }
