@@ -21,9 +21,9 @@ public class Main {
         }
 
         // Initialize repositories
-        IUserRepository userRepo = new UsersDBRepository(props);
-        IParticipantRepository participantRepo = new ParticipantsDBRepository(props);
-        IResultRepository resultRepo = new ResultsDBRepository(props);
+        IUserRepository userRepo = new UserHibernateRepository();
+        IParticipantRepository participantRepo = new ParticipantHibernateRepository();
+        IResultRepository resultRepo = new ResultHibernateRepository();
 
         // Create service
         ITriathlonService service = new MasterService(userRepo, participantRepo, resultRepo);

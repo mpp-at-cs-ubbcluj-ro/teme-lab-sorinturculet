@@ -48,8 +48,28 @@ public class MasterService implements ITriathlonService {
 
     @Override
     public List<Participant> getAllParticipantsWithTotalPoints() {
-        return participantRepo.findAllParticipantsSorted();
+        List<Participant> participants = participantRepo.findAllParticipantsSorted();
+
+        // Load total points for each participant
+        List<Object[]> totals = resultRepo.getTotalPointsPerParticipant();
+
+        // Map of <participantId, totalPoints>
+        Map<Integer, Integer> totalsMap = new HashMap<>();
+        for (Object[] row : totals) {
+            Integer id = (Integer) row[0];
+            Integer totalPoints = ((Number) row[2]).intValue();
+            totalsMap.put(id, totalPoints);
+        }
+
+        // Inject totalPoints manually
+        for (Participant p : participants) {
+            p.setTotalPoints(totalsMap.getOrDefault(p.getId(), 0));
+        }
+
+        return participants;
     }
+
+
 
     @Override
     public void addResult(Result result) {
