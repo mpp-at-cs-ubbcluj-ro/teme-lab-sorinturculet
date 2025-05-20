@@ -40,8 +40,8 @@ public class ParticipantClient {
         return execute(() -> restClient.post().uri(URL).contentType(APPLICATION_JSON).body(participant).retrieve().body(Participant.class));
     }
 
-    public Participant update(Participant participant) {
-        return execute(() -> restClient.put().uri(URL).contentType(APPLICATION_JSON).body(participant).retrieve().body(Participant.class));
+    public Participant update(Integer id,Participant participant) {
+        return execute(() -> restClient.put().uri(String.format("%s/%d", URL, id)).contentType(APPLICATION_JSON).body(participant).retrieve().body(Participant.class));
     }
 
     public void delete(Integer id) {

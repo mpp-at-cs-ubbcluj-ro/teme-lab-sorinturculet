@@ -35,9 +35,11 @@ public class ParticipantController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-    @PutMapping
-    public ResponseEntity<?> update(@RequestBody Participant participant){
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Integer id,
+                                    @RequestBody Participant participant){
         try {
+            participant.setId(id);
             return new ResponseEntity<>(participantRepository.update(participant), HttpStatus.OK);
         }
         catch(Exception e){

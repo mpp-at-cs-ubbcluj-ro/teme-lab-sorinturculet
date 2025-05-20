@@ -25,7 +25,7 @@ public class Main {
 
             System.out.println("\nUpdating participant name...");
             p.setName("Updated Dorel");
-            show(() -> client.update(p));
+            show(() -> client.update(p.getId(),p));
             show(() -> System.out.println(client.getById(p.getId())));
 
             System.out.println("\nDeleting participant with id: " + p.getId());
