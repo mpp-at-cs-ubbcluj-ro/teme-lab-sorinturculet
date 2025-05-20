@@ -37,6 +37,17 @@ public class ParticipantHibernateRepository implements IParticipantRepository {
             return participant;
         }
     }
+    @Override
+    public void delete(Integer id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+            Participant participant = session.find(Participant.class, id);
+            if (participant != null) {
+                session.remove(participant);
+            }
+            tx.commit();
+        }
+    }
 
     @Override
     public List<Participant> findAll() {

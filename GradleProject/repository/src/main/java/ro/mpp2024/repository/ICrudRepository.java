@@ -18,4 +18,5 @@ public interface ICrudRepository<T, ID> {
     T update(T entity);
 
     List<T> findAll();
+
 }

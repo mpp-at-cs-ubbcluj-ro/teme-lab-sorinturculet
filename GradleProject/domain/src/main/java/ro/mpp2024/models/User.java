@@ -2,6 +2,8 @@ package ro.mpp2024.models;
 import jakarta.persistence.*;
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "DTYPE", discriminatorType = DiscriminatorType.STRING)
 public class User extends Identifiable<Integer> {
     @Column(nullable = false)
     private String name;

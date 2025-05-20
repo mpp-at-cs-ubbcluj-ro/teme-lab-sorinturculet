@@ -5,8 +5,14 @@
 
         <!-- Database connection -->
         <property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
+        <!--
+        <property name="hibernate.connection.url">jdbc:sqlite:C:/Users/sorn/Documents/GitHub/UBB/4th_semester/MPP/teme-lab-sorinturculet/GradleProject/server/triathlon.db</property>
+      -->
         <property name="hibernate.connection.url">jdbc:sqlite:triathlon.db</property>
+
         <property name="hibernate.dialect">org.hibernate.community.dialect.SQLiteDialect</property>
+
+
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">false</property>
 

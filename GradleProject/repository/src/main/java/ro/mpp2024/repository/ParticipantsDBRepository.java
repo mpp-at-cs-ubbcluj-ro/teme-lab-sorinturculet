@@ -147,4 +147,8 @@ public class ParticipantsDBRepository implements IParticipantRepository {
         }
         return logger.traceExit(participants);
     }
+    @Override
+    public void delete(Integer participant){
+
+    }
 }

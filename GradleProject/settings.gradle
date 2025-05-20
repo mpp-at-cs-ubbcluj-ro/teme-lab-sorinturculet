@@ -5,4 +5,5 @@ include 'services'
 include 'client'
 include 'networking'
 include 'server'
+include 'restapi'
 
