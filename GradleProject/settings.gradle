@@ -1,0 +1,9 @@
+rootProject.name = 'GradleProject'
+include 'domain'
+include 'repository'
+include 'services'
+include 'client'
+include 'networking'
+include 'server'
+include 'restapi'
+
