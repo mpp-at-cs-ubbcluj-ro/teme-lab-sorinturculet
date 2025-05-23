@@ -6,12 +6,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.mpp2024.repository.IParticipantRepository;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+
 
 import java.util.Collection;
 import java.util.Optional;
 @RestController
 @RequestMapping("/api/participants")
 public class ParticipantController {
+
+    @Autowired
+    private SimpMessagingTemplate messagingTemplate;
     @Autowired
     IParticipantRepository participantRepository;
     @GetMapping
@@ -29,7 +34,10 @@ public class ParticipantController {
     public ResponseEntity<?> post(@RequestBody Participant participant){
        try {
            participant.setId(null);
-           return new ResponseEntity<>(participantRepository.create(participant), HttpStatus.CREATED);
+           Participant created = participantRepository.create(participant);
+           System.out.println("Sending refresh notification to /topic/participants");
+           messagingTemplate.convertAndSend("/topic/participants", "refresh");
+           return new ResponseEntity<>(created, HttpStatus.CREATED);
        }
        catch(Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -40,7 +48,10 @@ public class ParticipantController {
                                     @RequestBody Participant participant){
         try {
             participant.setId(id);
-            return new ResponseEntity<>(participantRepository.update(participant), HttpStatus.OK);
+            Participant updated = participantRepository.update(participant);
+            System.out.println("Sending refresh notification to /topic/participants");
+            messagingTemplate.convertAndSend("/topic/participants", "refresh");
+            return new ResponseEntity<>(updated, HttpStatus.OK);
         }
         catch(Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -50,6 +61,8 @@ public class ParticipantController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?>  delete(@PathVariable Integer id){
         participantRepository.delete(id);
+        System.out.println("Sending refresh notification to /topic/participants");
+        messagingTemplate.convertAndSend("/topic/participants", "refresh");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

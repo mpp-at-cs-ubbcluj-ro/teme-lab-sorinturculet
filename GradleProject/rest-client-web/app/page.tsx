@@ -6,7 +6,8 @@ import {
   updateParticipant,
   deleteParticipant,
 } from "../services/api";
-
+import { Client } from '@stomp/stompjs';
+import SockJS from 'sockjs-client/dist/sockjs';
 export default function Home() {
   const [participants, setParticipants] = useState([]);
   const [name, setName] = useState("");
@@ -16,6 +17,28 @@ export default function Home() {
     const data = await getAllParticipants();
     setParticipants(data);
   };
+
+  useEffect(() => {
+    const socket = new SockJS('http://localhost:8080/ws');
+    const stompClient = new Client({
+      webSocketFactory: () => socket,
+      onConnect: () => {
+        console.log('Connected to STOMP');
+
+        stompClient.subscribe('/topic/participants', message => {
+          console.log('Received message: ', message.body);
+          fetchParticipants();
+        });
+      },
+      onWebSocketError: (err) => console.error('WebSocket error:', err),
+      onStompError: (err) => console.error('STOMP error:', err),
+      debug: (str) => console.log(str),
+    });
+
+    stompClient.activate();
+
+    return () => stompClient.deactivate();
+  }, []);
 
   useEffect(() => {
     fetchParticipants();
@@ -84,4 +107,4 @@ export default function Home() {
         </ul>
       </div>
   );
-} // Tailwind can be removed if you want plain CSS
+}

@@ -17,13 +17,17 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation('com.jayway.jsonpath:json-path')
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
     implementation 'org.apache.activemq:activemq-core:5.7.0'
     implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
     implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
     implementation 'org.hibernate.orm:hibernate-community-dialects:6.4.4.Final'
+
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
 }
 
 test {
